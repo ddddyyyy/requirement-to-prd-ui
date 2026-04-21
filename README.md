@@ -1,60 +1,75 @@
-# Requirement to PRD & UI Prototype Skill
+# Requirement to PRD UI
 
-## 简介
+从需求到网页原型的完整工作流工具链，帮助你快速将产品想法转化为可交互的网页原型。
 
-**Requirement to PRD & UI Prototype** 是一个智能开发助手技能，旨在将模糊的用户需求转化为结构化的产品需求文档 (PRD) 和可交互的网页原型。它支持从需求澄清、文档生成、自动自检到原型生成的完整工作流，帮助产品经理和开发者快速落地产品想法。
+## 功能概览
 
-## 核心功能
-
-- **📄 完整 PRD 生成**：基于用户需求，经过需求澄清后，生成包含背景、功能描述、用户故事、验收标准及 UI 设计稿的专业 PRD 文档。
-- **🔍 智能文档自检**：自动检测 PRD 中的术语不一致、逻辑冲突、UI 与需求偏差以及依赖关系问题。
-- **🎨 网页原型生成**：根据 PRD 中的 UI 设计稿或用户提供的设计稿，自动生成可在浏览器中直接运行的交互式 HTML 原型。
+| 技能 | 描述 | 命令触发 |
+|------|------|----------|
+| [requirement-to-prd](./skills/requirement-to-prd/README.md) | 将用户需求转化为结构化的 PRD 文档，支持文档自检 | `/prd-generate`、`/prd-check` |
+| [prd-to-prototype](./skills/prd-to-prototype/README.md) | 将 PRD 中的 UI 设计稿转化为可交互的 HTML 原型 | `/prototype-generate` |
 
 ## 快速开始
 
-### 触发方式
+### 1. 生成 PRD 文档
 
-在对话中直接输入你的产品需求即可开始，例如：
-> "我想做一个任务管理应用"
+直接告诉我你的产品想法：
 
-或者使用以下命令触发特定流程：
+```
+我想做一个任务管理应用
+```
 
-| 命令 | 描述 |
-| :--- | :--- |
-| `/prd-generate` | 生成或更新 PRD 文档 |
-| `/prd-check` | 对现有 PRD 文档进行冲突和不一致性检查 |
-| `/prototype-generate` | 根据 PRD 或 UI 设计稿生成网页原型 |
-| `/full-process` | 执行完整全流程：需求澄清 → PRD 生成 → 文档自检 → 原型生成（每步需用户确认） |
+或使用命令：
 
-## 工作流程
+```
+/prd-generate
+```
 
-本技能支持灵活的工作模式，你可以选择执行完整流程或单独步骤：
+### 2. 生成网页原型
 
-1. **需求澄清与 PRD 生成**
-   - 理解用户初始需求。
-   - 生成结构化 PRD 文档（参考规范：`reference/PM.MD`）。
+在获得 PRD 文档后，继续：
 
-2. **文档自检与优化**
-   - 自动扫描文档中的逻辑冲突、术语不一致及 UI/需求匹配度。
-   - 列出发现的问题并请求用户确认。
-   - 根据用户反馈修改文档，直至无冲突。
+```
+根据这个 PRD 生成网页原型
+```
 
-3. **原型生成**
-   - 基于最终确定的 PRD 中的 UI 设计部分。
-   - 生成可交互的 HTML 原型文件（参考规范：`reference/UIPrototypeGen.MD`）。
+或使用命令：
 
-## 输出产物
+```
+/prototype-generate
+```
 
-- **PRD 文档**：Markdown 格式的标准产品需求文档。
-- **网页原型**：独立的 HTML 文件，包含 CSS/JS，可直接在浏览器中打开预览交互效果。
+## 完整工作流
 
-## 依赖与参考
+```
+用户需求
+    ↓
+[requirement-to-prd] → 需求澄清 → 生成 PRD 文档 → 文档自检
+    ↓
+[prd-to-prototype] → 设计解析 → 生成 HTML 原型
+    ↓
+可交互的网页原型（可在浏览器直接打开）
+```
 
-- **PRD 规范**：遵循 `reference/PM.MD` 中的定义。
-- **原型生成规范**：遵循 `reference/UIPrototypeGen.MD` 中的定义。
+## 项目结构
 
-## 适用场景
+```
+.
+├── skills/
+│   ├── requirement-to-prd/      # 需求转 PRD 技能
+│   │   ├── SKILL.md
+│   │   ├── README.md
+│   │   └── reference/
+│   │       └── PM.md            # PRD 生成规范
+│   └── prd-to-prototype/        # PRD 转原型技能
+│       ├── SKILL.md
+│       ├── README.md
+│       └── reference/
+│           └── UIPrototypeGen.md # 原型生成规范
+├── CLAUDE.md                     # Claude Code 配置
+└── README.md
+```
 
-- 产品经理快速产出需求文档初稿。
-- 独立开发者验证产品想法并快速获得可演示原型。
-- 团队内部进行需求评审前的文档一致性检查。
+## 相关链接
+
+- GitHub: https://github.com/ddddyyyy/requirement-to-prd-ui
